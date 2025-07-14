@@ -30,8 +30,3 @@ A premium furniture company website showcasing custom design services, featuring
 
 ### Prerequisites
 - Modern web browser (Chrome, Firefox, Safari, Edge)
-
-### Running Locally
-1. Clone the repository:
-```bash
-git clone https://github.com/your-username/orasco-furnitures.git
