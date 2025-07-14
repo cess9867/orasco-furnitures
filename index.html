@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orasco Furnitures | Modern Luxury Furniture</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2a5d3d;
+        --primary-dark: #1a472c;
+        --secondary: #d4a86c;
+        --accent: #8b5a2b;
+        --light: #f8f6f2;
+        --dark: #333333;
+        --gray: #777777;
+        --white: #ffffff;
+        --light-gray: #f0f0f0;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+        --radius: 8px;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+        background-color: var(--light);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 28px;
+        border-radius: var(--radius);
+        font-weight: 500;
+        text-decoration: none;
+        transition: var(--transition);
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: var(--white);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-outline {
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        background: transparent;
+      }
+
+      .btn-outline:hover {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      .btn-secondary {
+        background: var(--secondary);
+        color: var(--dark);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-secondary:hover {
+        background: var(--accent);
+        color: var(--white);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      /* Header Styles */
+      header {
+        background-color: var(--white);
+        box-shadow: var(--shadow-sm);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .header-scrolled {
+        padding: 10px 0;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        transition: var(--transition);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        font-family: "Playfair Display", serif;
+      }
+
+      .logo span {
+        color: var(--secondary);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 30px;
+      }
+
+      .nav-links a {
+        color: var(--dark);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--primary);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .nav-actions a {
+        color: var(--dark);
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav-actions a:hover {
+        color: var(--primary);
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--primary);
+        color: var(--white);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+      }
+
+      .mobile-menu {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Page Container */
+      .page-container {
+        flex: 1;
+        padding-top: 100px;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 180px 0 100px;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+          url("https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")
+            no-repeat center center/cover;
+        color: var(--white);
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 30px;
+      }
+
+      /* Intro Section */
+      .intro {
+        padding: 100px 0;
+        background-color: var(--white);
+      }
+
+      .intro-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .intro-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--primary);
+      }
+
+      .intro-content p {
+        font-size: 1.1rem;
+        color: var(--gray);
+        margin-bottom: 30px;
+      }
+
+      /* Featured Products */
+      .featured-products {
+        padding: 100px 0;
+        background-color: var(--light);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: var(--primary);
+      }
+
+      .section-title p {
+        color: var(--gray);
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .product-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        position: relative;
+        cursor: pointer;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--secondary);
+        color: var(--dark);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 2;
+      }
+
+      .product-image {
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .product-card:hover .product-image img {
+        transform: scale(1.05);
+      }
+
+      .product-actions {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        display: flex;
+        gap: 10px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: var(--transition);
+      }
+
+      .product-card:hover .product-actions {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .product-actions button {
+        width: 40px;
+        height: 40px;
+        background: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dark);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+      }
+
+      .product-actions button:hover {
+        background: var(--primary);
+        color: var(--white);
+        transform: translateY(-3px);
+      }
+
+      .product-info {
+        padding: 20px;
+      }
+
+      .product-category {
+        color: var(--secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+
+      .product-name {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .product-price {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      /* Why Choose Us */
+      .why-us {
+        padding: 100px 0;
+        background-color: var(--white);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background: var(--light);
+        border-radius: var(--radius);
+        padding: 40px 30px;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 2rem;
+        transition: var(--transition);
+      }
+
+      .feature-card:hover .feature-icon {
+        background: var(--secondary);
+        transform: rotateY(180deg);
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--primary);
+      }
+
+      /* Categories */
+      .categories {
+        padding: 100px 0;
+        background-color: var(--light);
+      }
+
+      .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .category-card {
+        height: 300px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        position: relative;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .category-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .category-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .category-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        padding: 20px;
+        color: var(--white);
+        transition: var(--transition);
+      }
+
+      .category-card:hover .category-overlay {
+        background: linear-gradient(transparent, rgba(42, 93, 61, 0.9));
+      }
+
+      .category-overlay h3 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        padding: 100px 0;
+        background-color: var(--white);
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .testimonial-card {
+        background: var(--light);
+        border-radius: var(--radius);
+        padding: 30px;
+        box-shadow: var(--shadow-sm);
+        position: relative;
+      }
+
+      .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 4rem;
+        font-family: "Playfair Display", serif;
+        color: rgba(42, 93, 61, 0.1);
+        line-height: 1;
+      }
+
+      .testimonial-content {
+        padding: 20px 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .testimonial-header {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .testimonial-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #eee;
+        margin-right: 15px;
+        overflow: hidden;
+      }
+
+      .testimonial-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .testimonial-author h4 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+      }
+
+      .testimonial-author p {
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
+      .testimonial-rating {
+        color: var(--secondary);
+        margin-bottom: 15px;
+      }
+
+      /* Newsletter */
+      .newsletter {
+        padding: 100px 0;
+        background: linear-gradient(
+            rgba(42, 93, 61, 0.9),
+            rgba(42, 93, 61, 0.9)
+          ),
+          url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")
+            no-repeat center center/cover;
+        color: var(--white);
+        text-align: center;
+      }
+
+      .newsletter-content {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .newsletter h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .newsletter p {
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      .newsletter-form {
+        display: flex;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .newsletter-form input {
+        flex: 1;
+        padding: 15px 20px;
+        border: none;
+        border-radius: var(--radius) 0 0 var(--radius);
+        font-size: 1rem;
+      }
+
+      .newsletter-form button {
+        background: var(--secondary);
+        color: var(--dark);
+        border: none;
+        padding: 0 30px;
+        font-weight: 600;
+        border-radius: 0 var(--radius) var(--radius) 0;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .newsletter-form button:hover {
+        background: var(--accent);
+        color: var(--white);
+      }
+
+      /* Contact CTA */
+      .contact-cta {
+        padding: 80px 0;
+        background-color: var(--light);
+        text-align: center;
+      }
+
+      .contact-cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: var(--primary);
+      }
+
+      .contact-cta p {
+        max-width: 700px;
+        margin: 0 auto 30px;
+        color: var(--gray);
+      }
+
+      .contact-methods {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+
+      .contact-method {
+        background: var(--white);
+        padding: 30px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+        min-width: 250px;
+        transition: var(--transition);
+      }
+
+      .contact-method:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .contact-icon {
+        width: 70px;
+        height: 70px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        color: var(--white);
+        font-size: 1.5rem;
+      }
+
+      .contact-method h3 {
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark);
+        color: var(--white);
+        padding: 80px 0 20px;
+        margin-top: auto;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+        font-family: "Playfair Display", serif;
+      }
+
+      .footer-col h3::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background: var(--secondary);
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #bbb;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: var(--secondary);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-links a {
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background: var(--secondary);
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #bbb;
+        font-size: 0.9rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .nav-links {
+          position: fixed;
+          top: 80px;
+          left: -100%;
+          width: 100%;
+          height: calc(100vh - 80px);
+          background: var(--white);
+          flex-direction: column;
+          align-items: center;
+          padding-top: 40px;
+          transition: var(--transition);
+        }
+
+        .nav-links.active {
+          left: 0;
+        }
+
+        .nav-links li {
+          margin: 15px 0;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+
+        .hero h1 {
+          font-size: 2.8rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          padding: 150px 0 80px;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .section {
+          padding: 80px 0;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+
+        .newsletter-form {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .newsletter-form input,
+        .newsletter-form button {
+          border-radius: var(--radius);
+          padding: 15px;
+          width: 100%;
+        }
+      }
+
+      /* Login Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: var(--white);
+        border-radius: var(--radius);
+        width: 90%;
+        max-width: 450px;
+        padding: 40px;
+        position: relative;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--gray);
+      }
+
+      .auth-tabs {
+        display: flex;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .auth-tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+      }
+
+      .auth-tab.active {
+        border-color: var(--primary);
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .auth-form {
+        display: none;
+      }
+
+      .auth-form.active {
+        display: block;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: var(--radius);
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-group input:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(42, 93, 61, 0.1);
+      }
+
+      .auth-options {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+        font-size: 0.9rem;
+      }
+
+      .auth-options a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .auth-options a:hover {
+        text-decoration: underline;
+      }
+
+      .social-auth {
+        margin: 30px 0;
+        text-align: center;
+      }
+
+      .social-auth p {
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      .social-auth p::before,
+      .social-auth p::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 30%;
+        height: 1px;
+        background: #ddd;
+      }
+
+      .social-auth p::before {
+        left: 0;
+      }
+
+      .social-auth p::after {
+        right: 0;
+      }
+
+      .social-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .social-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .social-btn.google {
+        background: #db4437;
+      }
+
+      .social-btn.facebook {
+        background: #4267b2;
+      }
+
+      .social-btn:hover {
+        transform: translateY(-3px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="header">
+      <div class="container">
+        <nav class="navbar">
+          <a href="#" class="logo">Orasco<span>Furnitures</span></a>
+
+          <ul class="nav-links">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="custom-design.html">Custom Design</a></li>
+            <li><a href="bulk-orders.html">Bulk Orders</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+
+          <div class="nav-actions">
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#" id="user-icon"><i class="fas fa-user"></i></a>
+            <a href="cart.html" id="cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">0</span>
+            </a>
+            <div class="mobile-menu">
+              <i class="fas fa-bars"></i>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+
+        <div class="auth-tabs">
+          <div class="auth-tab active" data-tab="login">Login</div>
+          <div class="auth-tab" data-tab="register">Register</div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="auth-form active" id="login-form">
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" required />
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <input type="password" id="login-password" required />
+            </div>
+            <div class="auth-options">
+              <label> <input type="checkbox" /> Remember me </label>
+              <a href="#" id="forgot-password">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              Login
+            </button>
+          </form>
+
+          <div class="social-auth">
+            <p>Or continue with</p>
+            <div class="social-buttons">
+              <div class="social-btn google">
+                <i class="fab fa-google"></i>
+              </div>
+              <div class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Register Form -->
+        <div class="auth-form" id="register-form">
+          <form id="registerForm">
+            <div class="form-group">
+              <label for="register-name">Full Name</label>
+              <input type="text" id="register-name" required />
+            </div>
+            <div class="form-group">
+              <label for="register-email">Email</label>
+              <input type="email" id="register-email" required />
+            </div>
+            <div class="form-group">
+              <label for="register-password">Password</label>
+              <input type="password" id="register-password" required />
+            </div>
+            <div class="form-group">
+              <label for="register-confirm">Confirm Password</label>
+              <input type="password" id="register-confirm" required />
+            </div>
+            <div class="auth-options">
+              <label>
+                <input type="checkbox" required /> I agree to the
+                <a href="#">Terms & Conditions</a>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              Create Account
+            </button>
+          </form>
+
+          <div class="social-auth">
+            <p>Or continue with</p>
+            <div class="social-buttons">
+              <div class="social-btn google">
+                <i class="fab fa-google"></i>
+              </div>
+              <div class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="page-container">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h1>Elevate Your Space with Timeless Design</h1>
+            <p>
+              Discover bespoke furniture pieces crafted with passion and
+              precision, designed to transform your living spaces into works of
+              art.
+            </p>
+            <div class="hero-buttons">
+              <a href="shop.html" class="btn btn-primary">Shop Collection</a>
+              <a href="custom-design.html" class="btn btn-outline"
+                >Custom Design</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Intro Section -->
+      <section class="intro">
+        <div class="container">
+          <div class="intro-content">
+            <h2>Welcome to Orasco Furnitures</h2>
+            <p>
+              For over a decade, Orasco has been crafting exceptional furniture
+              that combines timeless design with modern functionality. Our
+              commitment to quality materials, sustainable practices, and
+              artisanal craftsmanship has made us a trusted name for homeowners,
+              designers, and businesses alike.
+            </p>
+            <p>
+              Whether you're furnishing a single room or an entire hotel, our
+              dedicated team works with you to create pieces that reflect your
+              unique style and meet your specific requirements.
+            </p>
+            <a href="about.html" class="btn btn-secondary">Our Story</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Products -->
+      <section class="featured-products">
+        <div class="container">
+          <div class="section-title">
+            <h2>Featured Collections</h2>
+            <p>Handpicked selections from our most popular designs</p>
+          </div>
+
+          <div class="products-grid">
+            <a href="product-detail.html?id=1" class="product-card">
+              <div class="product-badge">Best Seller</div>
+              <div class="product-image">
+                <img
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                  alt="Modern Sofa"
+                />
+              </div>
+              <div class="product-info">
+                <div class="product-category">Living Room</div>
+                <h3 class="product-name">Elysian Modular Sofa</h3>
+                <div class="product-price">$1,299</div>
+              </div>
+            </a>
+
+            <a href="product-detail.html?id=2" class="product-card">
+              <div class="product-badge">New Arrival</div>
+              <div class="product-image">
+                <img
+                  src="https://images.unsplash.com/photo-1505692952047-1a78307da8f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                  alt="Dining Table"
+                />
+              </div>
+              <div class="product-info">
+                <div class="product-category">Dining</div>
+                <h3 class="product-name">Vesper Extendable Table</h3>
+                <div class="product-price">$1,899</div>
+              </div>
+            </a>
+
+            <a href="product-detail.html?id=3" class="product-card">
+              <div class="product-badge">Sustainable</div>
+              <div class="product-image">
+                <img
+                  src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                  alt="Bed Frame"
+                />
+              </div>
+              <div class="product-info">
+                <div class="product-category">Bedroom</div>
+                <h3 class="product-name">Serenity Platform Bed</h3>
+                <div class="product-price">$1,599</div>
+              </div>
+            </a>
+
+            <a href="product-detail.html?id=4" class="product-card">
+              <div class="product-badge">Office</div>
+              <div class="product-image">
+                <img
+                  src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                  alt="Office Desk"
+                />
+              </div>
+              <div class="product-info">
+                <div class="product-category">Office</div>
+                <h3 class="product-name">Horizon Executive Desk</h3>
+                <div class="product-price">$1,450</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Us -->
+      <section class="why-us">
+        <div class="container">
+          <div class="section-title">
+            <h2>Why Choose Orasco</h2>
+            <p>Our commitment to excellence sets us apart</p>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-hands"></i>
+              </div>
+              <h3>Artisan Craftsmanship</h3>
+              <p>
+                Each piece is meticulously crafted by skilled artisans with
+                attention to detail and quality.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-truck"></i>
+              </div>
+              <h3>Nationwide Delivery</h3>
+              <p>
+                Free delivery nationwide with professional assembly and setup
+                services available.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <h3>Sustainable Materials</h3>
+              <p>
+                We use responsibly sourced materials and eco-friendly production
+                methods.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-ruler-combined"></i>
+              </div>
+              <h3>Custom Design Service</h3>
+              <p>
+                Our design team will create bespoke furniture tailored to your
+                exact specifications.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-building"></i>
+              </div>
+              <h3>Bulk Order Solutions</h3>
+              <p>
+                Specialized services for hotels, offices, and large-scale
+                furnishing projects.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-award"></i>
+              </div>
+              <h3>Lifetime Warranty</h3>
+              <p>
+                Confidence in our quality with industry-leading warranty on all
+                products.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories -->
+      <section class="categories">
+        <div class="container">
+          <div class="section-title">
+            <h2>Shop By Category</h2>
+            <p>Find the perfect pieces for every room</p>
+          </div>
+
+          <div class="categories-grid">
+            <a href="living-room.html" class="category-card">
+              <img
+                src="https://images.unsplash.com/photo-1551298370-9d3d53740c72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                alt="Living Room"
+              />
+              <div class="category-overlay">
+                <h3>Living Room</h3>
+                <p>50+ Collections</p>
+              </div>
+            </a>
+
+            <a href="dining.html" class="category-card">
+              <img
+                src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                alt="Dining"
+              />
+              <div class="category-overlay">
+                <h3>Dining</h3>
+                <p>35+ Collections</p>
+              </div>
+            </a>
+
+            <a href="bedroom.html" class="category-card">
+              <img
+                src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                alt="Bedroom"
+              />
+              <div class="category-overlay">
+                <h3>Bedroom</h3>
+                <p>40+ Collections</p>
+              </div>
+            </a>
+
+            <a href="office.html" class="category-card">
+              <img
+                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                alt="Office"
+              />
+              <div class="category-overlay">
+                <h3>Office</h3>
+                <p>30+ Collections</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="testimonials">
+        <div class="container">
+          <div class="section-title">
+            <h2>Client Testimonials</h2>
+            <p>Hear what our customers say about us</p>
+          </div>
+
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <div class="testimonial-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p>
+                  "The custom dining table Orasco created for our restaurant
+                  exceeded all expectations. The craftsmanship is impeccable,
+                  and it has become the centerpiece of our dining area."
+                </p>
+              </div>
+              <div class="testimonial-header">
+                <div class="testimonial-avatar">
+                  <img
+                    src="https://randomuser.me/api/portraits/women/45.jpg"
+                    alt="Sarah Johnson"
+                  />
+                </div>
+                <div class="testimonial-author">
+                  <h4>Sarah Johnson</h4>
+                  <p>Restaurant Owner</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <div class="testimonial-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p>
+                  "We furnished our entire hotel with Orasco furniture. Their
+                  bulk order service made the process seamless, and the quality
+                  is outstanding. Our guests constantly compliment the
+                  furnishings."
+                </p>
+              </div>
+              <div class="testimonial-header">
+                <div class="testimonial-avatar">
+                  <img
+                    src="https://randomuser.me/api/portraits/men/32.jpg"
+                    alt="Michael Roberts"
+                  />
+                </div>
+                <div class="testimonial-author">
+                  <h4>Michael Roberts</h4>
+                  <p>Hotel Manager</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <div class="testimonial-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p>
+                  "As an interior designer, I rely on Orasco for high-quality,
+                  unique pieces. Their custom design service has helped me
+                  create stunning spaces for my most discerning clients."
+                </p>
+              </div>
+              <div class="testimonial-header">
+                <div class="testimonial-avatar">
+                  <img
+                    src="https://randomuser.me/api/portraits/women/68.jpg"
+                    alt="Jennifer Lee"
+                  />
+                </div>
+                <div class="testimonial-author">
+                  <h4>Jennifer Lee</h4>
+                  <p>Interior Designer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section class="newsletter">
+        <div class="container">
+          <div class="newsletter-content">
+            <h2>Join Our Design Community</h2>
+            <p>
+              Subscribe to receive exclusive offers, design inspiration, and
+              early access to new collections.
+            </p>
+            <form class="newsletter-form">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                required
+              />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact CTA -->
+      <section class="contact-cta">
+        <div class="container">
+          <h2>Have Questions or Special Requests?</h2>
+          <p>
+            Our design consultants are ready to help you create the perfect
+            space. Contact us today for personalized assistance.
+          </p>
+          <a href="contact.html" class="btn btn-primary">Contact Us</a>
+
+          <div class="contact-methods">
+            <div class="contact-method">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <h3>Call Us</h3>
+              <p>+1 (800) 123-4567</p>
+            </div>
+
+            <div class="contact-method">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h3>Email Us</h3>
+              <p>info@orascofurnitures.com</p>
+            </div>
+
+            <div class="contact-method">
+              <div class="contact-icon">
+                <i class="fas fa-comments"></i>
+              </div>
+              <h3>Live Chat</h3>
+              <p>Available Mon-Fri 9am-6pm EST</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h3>Orasco Furnitures</h3>
+            <p>
+              Crafting exceptional furniture since 2010. Our commitment to
+              quality and design has made us a leader in the furniture industry.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-pinterest-p"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="shop.html">Shop</a></li>
+              <li><a href="collections.html">Collections</a></li>
+              <li><a href="custom-design.html">Custom Design</a></li>
+              <li><a href="bulk-orders.html">Bulk Orders</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Categories</h3>
+            <ul class="footer-links">
+              <li><a href="living-room.html">Living Room</a></li>
+              <li><a href="dining.html">Dining</a></li>
+              <li><a href="bedroom.html">Bedroom</a></li>
+              <li><a href="office.html">Office</a></li>
+              <li><a href="outdoor.html">Outdoor</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Contact Us</h3>
+            <ul class="footer-links">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> 123 Design Avenue, New
+                York
+              </li>
+              <li><i class="fas fa-phone"></i> +1 (800) 123-4567</li>
+              <li><i class="fas fa-envelope"></i> info@orascofurnitures.com</li>
+              <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm EST</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <p>
+            &copy; 2025 Orasco Furnitures. All rights reserved. |
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const navLinks = document.querySelector(".nav-links");
+
+      mobileMenu.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        mobileMenu.querySelector("i").classList.toggle("fa-bars");
+        mobileMenu.querySelector("i").classList.toggle("fa-times");
+      });
+
+      // Sticky Header
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("header");
+        if (window.scrollY > 100) {
+          header.classList.add("header-scrolled");
+        } else {
+          header.classList.remove("header-scrolled");
+        }
+      });
+
+      // Login Modal
+      const loginModal = document.getElementById("login-modal");
+      const userIcon = document.getElementById("user-icon");
+      const closeModal = document.querySelector(".close-modal");
+      const authTabs = document.querySelectorAll(".auth-tab");
+      const authForms = document.querySelectorAll(".auth-form");
+
+      // Show modal when user icon clicked
+      userIcon.addEventListener("click", (e) => {
+        e.preventDefault();
+        loginModal.style.display = "flex";
+      });
+
+      // Close modal
+      closeModal.addEventListener("click", () => {
+        loginModal.style.display = "none";
+      });
+
+      // Close modal when clicking outside
+      window.addEventListener("click", (e) => {
+        if (e.target === loginModal) {
+          loginModal.style.display = "none";
+        }
+      });
+
+      // Switch between login and register tabs
+      authTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Remove active class from all tabs and forms
+          authTabs.forEach((t) => t.classList.remove("active"));
+          authForms.forEach((f) => f.classList.remove("active"));
+
+          // Add active class to clicked tab
+          tab.classList.add("active");
+
+          // Show corresponding form
+          const tabName = tab.dataset.tab;
+          document.getElementById(`${tabName}-form`).classList.add("active");
+        });
+      });
+
+      // Form submissions
+      const loginForm = document.getElementById("loginForm");
+      const registerForm = document.getElementById("registerForm");
+
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Simulate login
+        showNotification("Login successful!");
+        loginModal.style.display = "none";
+      });
+
+      registerForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Simulate registration
+        showNotification("Registration successful! Please check your email.");
+        loginModal.style.display = "none";
+      });
+
+      // Newsletter form
+      const newsletterForm = document.querySelector(".newsletter-form");
+      newsletterForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = this.querySelector("input").value;
+        showNotification(`Thank you for subscribing with ${email}!`);
+        this.reset();
+      });
+
+      // Show notification
+      function showNotification(message) {
+        // Create notification element
+        const notification = document.createElement("div");
+        notification.className = "notification";
+        notification.textContent = message;
+
+        // Add to document
+        document.body.appendChild(notification);
+
+        // Remove after delay
+        setTimeout(() => {
+          notification.remove();
+        }, 3000);
+      }
+
+      // Notification styles (dynamically added)
+      const style = document.createElement("style");
+      style.textContent = `
+            .notification {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: var(--primary);
+                color: white;
+                padding: 15px 25px;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow-lg);
+                z-index: 10000;
+                animation: slideIn 0.3s, fadeOut 0.5s 2.5s;
+            }
+            
+            @keyframes slideIn {
+                from { transform: translateX(100%); }
+                to { transform: translateX(0); }
+            }
+            
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>

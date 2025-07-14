@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop | Orasco Furnitures</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2a5d3d;
+        --primary-dark: #1a472c;
+        --secondary: #d4a86c;
+        --accent: #8b5a2b;
+        --light: #f8f6f2;
+        --dark: #333333;
+        --gray: #777777;
+        --white: #ffffff;
+        --light-gray: #f0f0f0;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+        --radius: 8px;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--dark);
+        line-height: 1.6;
+        overflow-x: hidden;
+        background-color: var(--light);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 28px;
+        border-radius: var(--radius);
+        font-weight: 500;
+        text-decoration: none;
+        transition: var(--transition);
+        text-transform: uppercase;
+        font-size: 14px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: var(--white);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-outline {
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        background: transparent;
+      }
+
+      .btn-outline:hover {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      .btn-secondary {
+        background: var(--secondary);
+        color: var(--dark);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .btn-secondary:hover {
+        background: var(--accent);
+        color: var(--white);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      /* Header Styles */
+      header {
+        background-color: var(--white);
+        box-shadow: var(--shadow-sm);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .header-scrolled {
+        padding: 10px 0;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        transition: var(--transition);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        font-family: "Playfair Display", serif;
+      }
+
+      .logo span {
+        color: var(--secondary);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 30px;
+      }
+
+      .nav-links a {
+        color: var(--dark);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: var(--primary);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .nav-actions a {
+        color: var(--dark);
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .nav-actions a:hover {
+        color: var(--primary);
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--primary);
+        color: var(--white);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+      }
+
+      .mobile-menu {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Page Container */
+      .page-container {
+        flex: 1;
+        padding-top: 100px;
+      }
+
+      /* Shop Page Specific Styles */
+      .shop-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+          url("https://images.unsplash.com/photo-1556228720-195a672e8a03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")
+            no-repeat center center/cover;
+        color: var(--white);
+        text-align: center;
+        padding: 100px 0;
+        margin-bottom: 60px;
+      }
+
+      .shop-header h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .breadcrumb {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        font-size: 0.9rem;
+      }
+
+      .breadcrumb li {
+        margin: 0 5px;
+      }
+
+      .breadcrumb li a {
+        color: var(--light);
+        text-decoration: none;
+      }
+
+      .breadcrumb li:not(:last-child)::after {
+        content: "/";
+        margin-left: 10px;
+        color: var(--light);
+      }
+
+      /* Shop Content */
+      .shop-content {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+
+      /* Filters */
+      .filters {
+        flex: 0 0 280px;
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: 25px;
+        box-shadow: var(--shadow-sm);
+        height: fit-content;
+      }
+
+      .filters h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .filter-section {
+        margin-bottom: 25px;
+      }
+
+      .filter-section h4 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        color: var(--primary);
+      }
+
+      .filter-options {
+        list-style: none;
+      }
+
+      .filter-options li {
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+      }
+
+      .filter-options input[type="checkbox"] {
+        margin-right: 10px;
+        width: 18px;
+        height: 18px;
+        accent-color: var(--primary);
+      }
+
+      .filter-options label {
+        cursor: pointer;
+        font-size: 0.95rem;
+      }
+
+      .color-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .color-option {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: var(--transition);
+      }
+
+      .color-option:hover,
+      .color-option.active {
+        border-color: var(--primary);
+        transform: scale(1.1);
+      }
+
+      .price-range {
+        width: 100%;
+        margin: 15px 0;
+      }
+
+      .price-values {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        color: var(--gray);
+      }
+
+      .filter-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      /* Products Grid */
+      .products-section {
+        flex: 1;
+      }
+
+      .shop-topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        background: var(--white);
+        padding: 15px 20px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .results-count {
+        font-size: 0.95rem;
+      }
+
+      .sort-options {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .sort-options label {
+        font-size: 0.95rem;
+      }
+
+      .sort-options select {
+        padding: 8px 12px;
+        border-radius: var(--radius);
+        border: 1px solid #ddd;
+        background: var(--light);
+        font-family: "Poppins", sans-serif;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .product-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        position: relative;
+        cursor: pointer;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--secondary);
+        color: var(--dark);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 2;
+      }
+
+      .product-image {
+        height: 250px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .product-card:hover .product-image img {
+        transform: scale(1.05);
+      }
+
+      .product-image-count {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: var(--white);
+        padding: 3px 8px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+      }
+
+      .product-info {
+        padding: 20px;
+      }
+
+      .product-category {
+        color: var(--secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+      }
+
+      .product-name {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .product-description {
+        font-size: 0.9rem;
+        color: var(--gray);
+        margin-bottom: 15px;
+        height: 60px;
+        overflow: hidden;
+      }
+
+      .product-price {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 15px;
+      }
+
+      .product-specs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
+      }
+
+      .spec-item {
+        background: var(--light);
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: var(--gray);
+      }
+
+      .product-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .action-btn {
+        flex: 1;
+        padding: 10px;
+        border-radius: var(--radius);
+        background: var(--light);
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+      }
+
+      .action-btn:hover {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      /* Pagination */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        gap: 10px;
+      }
+
+      .pagination a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        text-decoration: none;
+        color: var(--dark);
+        background: var(--white);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+      }
+
+      .pagination a:hover,
+      .pagination a.active {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      /* Product Detail Page */
+      .product-detail-container {
+        display: none;
+        padding: 40px 0;
+      }
+
+      .product-detail {
+        background: var(--white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
+      }
+
+      .product-detail-content {
+        display: flex;
+        gap: 40px;
+        padding: 40px;
+      }
+
+      .product-gallery {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .main-image {
+        height: 500px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .main-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .thumbnail-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+
+      .thumbnail {
+        height: 100px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: var(--transition);
+      }
+
+      .thumbnail:hover,
+      .thumbnail.active {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+
+      .thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .product-details {
+        flex: 1;
+      }
+
+      .product-header {
+        margin-bottom: 20px;
+      }
+
+      .product-title {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+      }
+
+      .product-price-detail {
+        font-size: 1.8rem;
+        color: var(--primary);
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .product-description-detail {
+        color: var(--gray);
+        margin-bottom: 30px;
+        line-height: 1.8;
+      }
+
+      .specs-table {
+        width: 100%;
+        margin-bottom: 30px;
+        border-collapse: collapse;
+      }
+
+      .specs-table td {
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .specs-table td:first-child {
+        font-weight: 500;
+        color: var(--dark);
+      }
+
+      .specs-table td:last-child {
+        color: var(--gray);
+      }
+
+      .quantity-selector {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        gap: 15px;
+      }
+
+      .quantity-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--light);
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .quantity-btn:hover {
+        background: var(--primary);
+        color: var(--white);
+      }
+
+      .quantity-input {
+        width: 60px;
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: var(--radius);
+        font-size: 1rem;
+      }
+
+      .detail-actions {
+        display: flex;
+        gap: 15px;
+      }
+
+      .back-to-shop {
+        display: block;
+        margin-top: 30px;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .back-to-shop:hover {
+        text-decoration: underline;
+      }
+
+      /* Login Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: var(--white);
+        border-radius: var(--radius);
+        width: 90%;
+        max-width: 450px;
+        padding: 40px;
+        position: relative;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--gray);
+      }
+
+      .auth-tabs {
+        display: flex;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .auth-tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+      }
+
+      .auth-tab.active {
+        border-color: var(--primary);
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .auth-form {
+        display: none;
+      }
+
+      .auth-form.active {
+        display: block;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: var(--radius);
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-group input:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(42, 93, 61, 0.1);
+      }
+
+      .auth-options {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+        font-size: 0.9rem;
+      }
+
+      .auth-options a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .auth-options a:hover {
+        text-decoration: underline;
+      }
+
+      .social-auth {
+        margin: 30px 0;
+        text-align: center;
+      }
+
+      .social-auth p {
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      .social-auth p::before,
+      .social-auth p::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 30%;
+        height: 1px;
+        background: #ddd;
+      }
+
+      .social-auth p::before {
+        left: 0;
+      }
+
+      .social-auth p::after {
+        right: 0;
+      }
+
+      .social-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .social-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .social-btn.google {
+        background: #db4437;
+      }
+
+      .social-btn.facebook {
+        background: #4267b2;
+      }
+
+      .social-btn:hover {
+        transform: translateY(-3px);
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .nav-links {
+          position: fixed;
+          top: 80px;
+          left: -100%;
+          width: 100%;
+          height: calc(100vh - 80px);
+          background: var(--white);
+          flex-direction: column;
+          align-items: center;
+          padding-top: 40px;
+          transition: var(--transition);
+        }
+
+        .nav-links.active {
+          left: 0;
+        }
+
+        .nav-links li {
+          margin: 15px 0;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+
+        .shop-content {
+          flex-direction: column;
+        }
+
+        .filters {
+          flex: 0 0 auto;
+        }
+
+        .product-detail-content {
+          flex-direction: column;
+        }
+
+        .main-image {
+          height: 400px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .shop-header {
+          padding: 80px 0;
+        }
+
+        .shop-header h1 {
+          font-size: 2.2rem;
+        }
+
+        .shop-topbar {
+          flex-direction: column;
+          gap: 15px;
+          align-items: flex-start;
+        }
+
+        .products-grid {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .product-detail-content {
+          padding: 20px;
+        }
+
+        .thumbnail-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 576px) {
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .thumbnail-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .detail-actions {
+          flex-direction: column;
+        }
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark);
+        color: var(--white);
+        padding: 80px 0 20px;
+        margin-top: auto;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+        font-family: "Playfair Display", serif;
+      }
+
+      .footer-col h3::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background: var(--secondary);
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: #bbb;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: var(--secondary);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-links a {
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        background: var(--secondary);
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #bbb;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="header">
+      <div class="container">
+        <nav class="navbar">
+          <a href="#" class="logo">Orasco<span>Furnitures</span></a>
+
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html" class="active">Shop</a></li>
+            <li><a href="collections.html">Collections</a></li>
+            <li><a href="custom-design.html">Custom Design</a></li>
+            <li><a href="bulk-orders.html">Bulk Orders</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+
+          <div class="nav-actions">
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#" id="user-icon"><i class="fas fa-user"></i></a>
+            <a href="#" id="cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">3</span>
+            </a>
+            <div class="mobile-menu">
+              <i class="fas fa-bars"></i>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+
+        <div class="auth-tabs">
+          <div class="auth-tab active" data-tab="login">Login</div>
+          <div class="auth-tab" data-tab="register">Register</div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="auth-form active" id="login-form">
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" required />
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <input type="password" id="login-password" required />
+            </div>
+            <div class="auth-options">
+              <label> <input type="checkbox" /> Remember me </label>
+              <a href="#" id="forgot-password">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              Login
+            </button>
+          </form>
+
+          <div class="social-auth">
+            <p>Or continue with</p>
+            <div class="social-buttons">
+              <div class="social-btn google">
+                <i class="fab fa-google"></i>
+              </div>
+              <div class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Register Form -->
+        <div class="auth-form" id="register-form">
+          <form id="registerForm">
+            <div class="form-group">
+              <label for="register-name">Full Name</label>
+              <input type="text" id="register-name" required />
+            </div>
+            <div class="form-group">
+              <label for="register-email">Email</label>
+              <input type="email" id="register-email" required />
+            </div>
+            <div class="form-group">
+              <label for="register-password">Password</label>
+              <input type="password" id="register-password" required />
+            </div>
+            <div class="form-group">
+              <label for="register-confirm">Confirm Password</label>
+              <input type="password" id="register-confirm" required />
+            </div>
+            <div class="auth-options">
+              <label>
+                <input type="checkbox" required /> I agree to the
+                <a href="#">Terms & Conditions</a>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              Create Account
+            </button>
+          </form>
+
+          <div class="social-auth">
+            <p>Or continue with</p>
+            <div class="social-buttons">
+              <div class="social-btn google">
+                <i class="fab fa-google"></i>
+              </div>
+              <div class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shop Page Content -->
+    <div class="page-container" id="shop-container">
+      <!-- Shop Header -->
+      <section class="shop-header">
+        <div class="container">
+          <h1>Our Furniture Collection</h1>
+          <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li>Shop</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Shop Content -->
+      <div class="container">
+        <div class="shop-content">
+          <!-- Filters Sidebar -->
+          <aside class="filters">
+            <h3>Filter Products</h3>
+
+            <div class="filter-section">
+              <h4>Categories</h4>
+              <ul class="filter-options">
+                <li>
+                  <input type="checkbox" id="category-living" checked />
+                  <label for="category-living">Living Room</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="category-dining" checked />
+                  <label for="category-dining">Dining</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="category-bedroom" />
+                  <label for="category-bedroom">Bedroom</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="category-office" />
+                  <label for="category-office">Office</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="category-outdoor" />
+                  <label for="category-outdoor">Outdoor</label>
+                </li>
+              </ul>
+            </div>
+
+            <div class="filter-section">
+              <h4>Price Range</h4>
+              <input
+                type="range"
+                class="price-range"
+                min="0"
+                max="5000"
+                value="2500"
+              />
+              <div class="price-values">
+                <span>$0</span>
+                <span>$5,000</span>
+              </div>
+            </div>
+
+            <div class="filter-section">
+              <h4>Materials</h4>
+              <ul class="filter-options">
+                <li>
+                  <input type="checkbox" id="material-wood" />
+                  <label for="material-wood">Solid Wood</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="material-metal" />
+                  <label for="material-metal">Metal</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="material-leather" />
+                  <label for="material-leather">Leather</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="material-fabric" />
+                  <label for="material-fabric">Fabric</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="material-glass" />
+                  <label for="material-glass">Glass</label>
+                </li>
+              </ul>
+            </div>
+
+            <div class="filter-section">
+              <h4>Colors</h4>
+              <div class="color-options">
+                <div
+                  class="color-option"
+                  style="background-color: #2a5d3d"
+                  title="Forest Green"
+                ></div>
+                <div
+                  class="color-option active"
+                  style="background-color: #d4a86c"
+                  title="Golden Oak"
+                ></div>
+                <div
+                  class="color-option"
+                  style="background-color: #8b5a2b"
+                  title="Walnut Brown"
+                ></div>
+                <div
+                  class="color-option"
+                  style="background-color: #333333"
+                  title="Charcoal Black"
+                ></div>
+                <div
+                  class="color-option"
+                  style="background-color: #f0f0f0"
+                  title="Ivory White"
+                ></div>
+                <div
+                  class="color-option"
+                  style="background-color: #c0c0c0"
+                  title="Silver Gray"
+                ></div>
+              </div>
+            </div>
+
+            <div class="filter-section">
+              <h4>Special Features</h4>
+              <ul class="filter-options">
+                <li>
+                  <input type="checkbox" id="feature-eco" />
+                  <label for="feature-eco">Eco-friendly</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="feature-storage" />
+                  <label for="feature-storage">Storage Included</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="feature-modular" />
+                  <label for="feature-modular">Modular Design</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="feature-adjustable" />
+                  <label for="feature-adjustable">Adjustable</label>
+                </li>
+              </ul>
+            </div>
+
+            <div class="filter-buttons">
+              <button class="btn btn-primary" id="apply-filters">
+                Apply Filters
+              </button>
+              <button class="btn btn-outline" id="reset-filters">Reset</button>
+            </div>
+          </aside>
+
+          <!-- Products Section -->
+          <section class="products-section">
+            <div class="shop-topbar">
+              <div class="results-count">Showing 12 of 48 products</div>
+              <div class="sort-options">
+                <label for="sort-by">Sort by:</label>
+                <select id="sort-by">
+                  <option value="featured">Featured</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Customer Rating</option>
+                  <option value="newest">Newest Arrivals</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="products-grid" id="products-grid">
+              <!-- Product cards will be generated by JavaScript -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+              <a href="#"><i class="fas fa-chevron-left"></i></a>
+              <a href="#" class="active">1</a>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#">4</a>
+              <a href="#"><i class="fas fa-chevron-right"></i></a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Detail Page -->
+    <div
+      class="page-container"
+      id="product-detail-container"
+      style="display: none"
+    >
+      <div class="container">
+        <a href="#" class="back-to-shop" id="back-to-shop">
+          <i class="fas fa-arrow-left"></i> Back to Shop
+        </a>
+
+        <div class="product-detail">
+          <div class="product-detail-content" id="product-detail-content">
+            <!-- Product detail content will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h3>Orasco Furnitures</h3>
+            <p>
+              Crafting exceptional furniture since 2010. Our commitment to
+              quality and design has made us a leader in the furniture industry.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-pinterest-p"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#">Home</a></li>
+              <li><a href="shop.html">Shop</a></li>
+              <li><a href="collections.html">Collections</a></li>
+              <li><a href="custom-design.html">Custom Design</a></li>
+              <li><a href="bulk-orders.html">Bulk Orders</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Categories</h3>
+            <ul class="footer-links">
+              <li><a href="#">Living Room</a></li>
+              <li><a href="#">Dining</a></li>
+              <li><a href="#">Bedroom</a></li>
+              <li><a href="#">Office</a></li>
+              <li><a href="#">Outdoor</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Contact Us</h3>
+            <ul class="footer-links">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> 123 Design Avenue, New
+                York
+              </li>
+              <li><i class="fas fa-phone"></i> +1 (800) 123-4567</li>
+              <li><i class="fas fa-envelope"></i> info@orascofurnitures.com</li>
+              <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm EST</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <p>
+            &copy; 2025 Orasco Furnitures. All rights reserved. |
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Product data
+      const products = [
+        {
+          id: 1,
+          name: "Elysian Modular Sofa",
+          category: "Living Room",
+          price: 1299,
+          images: [
+            "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+          ],
+          description:
+            "The Elysian Modular Sofa features premium fabric upholstery, deep seating cushions, and a versatile modular design that allows you to create your perfect living room configuration. With its elegant curves and comfortable seating, this sofa is designed for both relaxation and entertaining.",
+          specs: {
+            material: "Premium fabric, hardwood frame",
+            dimensions: '86" W x 36" D x 32" H',
+            color: "Charcoal Gray",
+            features: "Modular design, removable cushions, stain-resistant",
+          },
+          badge: "Best Seller",
+          rating: 4.8,
+          stock: 12,
+        },
+        {
+          id: 2,
+          name: "Serenity Platform Bed",
+          category: "Bedroom",
+          price: 1599,
+          images: [
+            "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1505691938895-1758d7feb511?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1616627981481-9b0c3c1f9e8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+            "https://images.unsplash.com/photo-1616046229478-9901c5536a45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80",
+          ],
+          description:
+            "Crafted from sustainably sourced oak, the Serenity Platform Bed features a low-profile design with integrated storage drawers. The minimalist aesthetic creates a calming bedroom environment while providing practical storage solutions.",
+          specs: {
+            material: "Solid oak, eco-friendly finishes",
+            dimensions: '65" W x 85" D x 28" H (Queen)',
+            color: "Natural Oak",
+            features: "Integrated storage, slat support system, low-VOC finish",
+          },
+          badge: "Sustainable",
+          rating: 4.7,
+          stock: 8,
+        },
+        {
+          id: 3,
+          name: "Vesper Extendable Table",
+          category: "Dining",
+          price: 1899,
+          images: [
+            "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80",
+            "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80",
+          ],
+          description:
+            "The Vesper Extendable Dining Table combines elegant walnut wood with a smart extension mechanism that allows it to comfortably seat from 6 to 10 guests. The butterfly leaf system makes transformation effortless, perfect for both daily meals and entertaining.",
+          specs: {
+            material: "Solid walnut, metal hardware",
+            dimensions: '72"-120" L x 42" W x 30" H',
+            color: "Walnut Brown",
+            features:
+              "Butterfly extension, scratch-resistant surface, adjustable levelers",
+          },
+          badge: "New Arrival",
+          rating: 4.9,
+          stock: 5,
+        },
+        {
+          id: 4,
+          name: "Horizon Executive Desk",
+          category: "Office",
+          price: 1450,
+          images: [
+            "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1518455022959-b6dd4728ed65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            "https://images.unsplash.com/photo-1545239351-ef35f43d514b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+          ],
+          description:
+            "Designed for productivity and style, the Horizon Executive Desk features a spacious bamboo top, integrated cable management, and a height-adjustable mechanism. The sustainable bamboo surface provides a warm, natural aesthetic while the smart organization keeps your workspace clutter-free.",
+          specs: {
+            material: "Bamboo, steel frame",
+            dimensions: '60" W x 30" D x 29"-47" H',
+            color: "Natural Bamboo",
+            features: "Height-adjustable, cable management, ergonomic design",
+          },
+          badge: "Eco",
+          rating: 4.6,
+          stock: 10,
+        },
+      ];
+
+      // State variables
+      let isLoggedIn = false;
+      let currentProducts = [...products];
+      let selectedProduct = null;
+
+      // DOM Elements
+      const shopContainer = document.getElementById("shop-container");
+      const productDetailContainer = document.getElementById(
+        "product-detail-container"
+      );
+      const productsGrid = document.getElementById("products-grid");
+      const productDetailContent = document.getElementById(
+        "product-detail-content"
+      );
+      const backToShop = document.getElementById("back-to-shop");
+      const cartIcon = document.getElementById("cart-icon");
+      const loginModal = document.getElementById("login-modal");
+      const closeModal = document.querySelector(".close-modal");
+      const userIcon = document.getElementById("user-icon");
+      const applyFiltersBtn = document.getElementById("apply-filters");
+      const resetFiltersBtn = document.getElementById("reset-filters");
+      const sortSelect = document.getElementById("sort-by");
+
+      // Mobile Menu Toggle
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const navLinks = document.querySelector(".nav-links");
+
+      mobileMenu.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        mobileMenu.querySelector("i").classList.toggle("fa-bars");
+        mobileMenu.querySelector("i").classList.toggle("fa-times");
+      });
+
+      // Sticky Header
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("header");
+        if (window.scrollY > 100) {
+          header.classList.add("header-scrolled");
+        } else {
+          header.classList.remove("header-scrolled");
+        }
+      });
+
+      // Show modal when user icon clicked
+      userIcon.addEventListener("click", (e) => {
+        e.preventDefault();
+        loginModal.style.display = "flex";
+      });
+
+      // Close modal
+      closeModal.addEventListener("click", () => {
+        loginModal.style.display = "none";
+      });
+
+      // Close modal when clicking outside
+      window.addEventListener("click", (e) => {
+        if (e.target === loginModal) {
+          loginModal.style.display = "none";
+        }
+      });
+
+      // Cart icon click handler
+      cartIcon.addEventListener("click", (e) => {
+        if (!isLoggedIn) {
+          e.preventDefault();
+          loginModal.style.display = "flex";
+          showNotification("Please log in to view your cart");
+        }
+      });
+
+      // Login Form Submission
+      document.getElementById("loginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        isLoggedIn = true;
+        loginModal.style.display = "none";
+        showNotification("Login successful!");
+      });
+
+      // Register Form Submission
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          isLoggedIn = true;
+          loginModal.style.display = "none";
+          showNotification("Registration successful!");
+        });
+
+      // Apply Filters
+      applyFiltersBtn.addEventListener("click", () => {
+        // Filter by category
+        const livingChecked =
+          document.getElementById("category-living").checked;
+        const diningChecked =
+          document.getElementById("category-dining").checked;
+        const bedroomChecked =
+          document.getElementById("category-bedroom").checked;
+        const officeChecked =
+          document.getElementById("category-office").checked;
+
+        currentProducts = products.filter((product) => {
+          if (product.category === "Living Room" && !livingChecked)
+            return false;
+          if (product.category === "Dining" && !diningChecked) return false;
+          if (product.category === "Bedroom" && !bedroomChecked) return false;
+          if (product.category === "Office" && !officeChecked) return false;
+          return true;
+        });
+
+        // Apply sorting as well
+        sortProducts();
+
+        showNotification("Filters applied successfully!");
+        renderProducts();
+      });
+
+      // Reset Filters
+      resetFiltersBtn.addEventListener("click", () => {
+        document.getElementById("category-living").checked = true;
+        document.getElementById("category-dining").checked = true;
+        document.getElementById("category-bedroom").checked = false;
+        document.getElementById("category-office").checked = false;
+
+        currentProducts = [...products];
+        sortProducts();
+        renderProducts();
+        showNotification("Filters reset");
+      });
+
+      // Sort Products
+      sortSelect.addEventListener("change", () => {
+        sortProducts();
+        renderProducts();
+      });
+
+      // Sort products based on selected option
+      function sortProducts() {
+        const sortBy = sortSelect.value;
+
+        switch (sortBy) {
+          case "price-low":
+            currentProducts.sort((a, b) => a.price - b.price);
+            break;
+          case "price-high":
+            currentProducts.sort((a, b) => b.price - a.price);
+            break;
+          case "rating":
+            currentProducts.sort((a, b) => b.rating - a.rating);
+            break;
+          case "newest":
+            // For this demo, we'll sort by ID (assuming higher IDs are newer)
+            currentProducts.sort((a, b) => b.id - a.id);
+            break;
+          default:
+            // Featured - no change
+            break;
+        }
+      }
+
+      // Render products in the grid
+      function renderProducts() {
+        productsGrid.innerHTML = "";
+
+        currentProducts.forEach((product) => {
+          const productCard = document.createElement("div");
+          productCard.className = "product-card";
+          productCard.innerHTML = `
+                    ${
+                      product.badge
+                        ? `<div class="product-badge">${product.badge}</div>`
+                        : ""
+                    }
+                    <div class="product-image">
+                        <img src="${product.images[0]}" alt="${product.name}">
+                        <div class="product-image-count">${
+                          product.images.length
+                        } images</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">${product.description.substring(
+                          0,
+                          100
+                        )}...</p>
+                        <div class="product-price">$${product.price.toLocaleString()}</div>
+                        <div class="product-specs">
+                            <span class="spec-item">${
+                              Object.values(product.specs)[0]
+                            }</span>
+                            <span class="spec-item">${
+                              Object.values(product.specs)[1]
+                            }</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="action-btn"><i class="fas fa-shopping-cart"></i></button>
+                            <button class="action-btn"><i class="fas fa-heart"></i></button>
+                            <button class="action-btn view-detail" data-id="${
+                              product.id
+                            }"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                `;
+          productsGrid.appendChild(productCard);
+        });
+
+        // Add event listeners to view detail buttons
+        document.querySelectorAll(".view-detail").forEach((button) => {
+          button.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const productId = parseInt(button.getAttribute("data-id"));
+            showProductDetail(productId);
+          });
+        });
+
+        // Add event listeners to entire product card
+        document.querySelectorAll(".product-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            const productId = parseInt(
+              card.querySelector(".view-detail").getAttribute("data-id")
+            );
+            showProductDetail(productId);
+          });
+        });
+      }
+
+      // Show product detail page
+      function showProductDetail(productId) {
+        selectedProduct = products.find((p) => p.id === productId);
+
+        if (selectedProduct) {
+          shopContainer.style.display = "none";
+          productDetailContainer.style.display = "block";
+
+          // Generate thumbnail images
+          let thumbnails = "";
+          selectedProduct.images.forEach((img, index) => {
+            thumbnails += `
+                        <div class="thumbnail ${
+                          index === 0 ? "active" : ""
+                        }" data-index="${index}">
+                            <img src="${img}" alt="${selectedProduct.name}">
+                        </div>
+                    `;
+          });
+
+          // Populate product detail content
+          productDetailContent.innerHTML = `
+                    <div class="product-gallery">
+                        <div class="main-image">
+                            <img src="${selectedProduct.images[0]}" alt="${
+            selectedProduct.name
+          }" id="main-image">
+                        </div>
+                        <div class="thumbnail-grid">
+                            ${thumbnails}
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-header">
+                            <h2 class="product-title">${
+                              selectedProduct.name
+                            }</h2>
+                            <div class="product-price-detail">$${selectedProduct.price.toLocaleString()}</div>
+                            <div class="product-rating">
+                                ${generateRatingStars(selectedProduct.rating)}
+                                <span>(${selectedProduct.rating} rating)</span>
+                            </div>
+                        </div>
+                        <p class="product-description-detail">${
+                          selectedProduct.description
+                        }</p>
+                        
+                        <table class="specs-table">
+                            ${Object.entries(selectedProduct.specs)
+                              .map(
+                                ([key, value]) => `
+                                <tr>
+                                    <td>${
+                                      key.charAt(0).toUpperCase() + key.slice(1)
+                                    }</td>
+                                    <td>${value}</td>
+                                </tr>
+                            `
+                              )
+                              .join("")}
+                        </table>
+                        
+                        <div class="quantity-selector">
+                            <label>Quantity:</label>
+                            <button class="quantity-btn minus"><i class="fas fa-minus"></i></button>
+                            <input type="number" class="quantity-input" value="1" min="1">
+                            <button class="quantity-btn plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                        
+                        <div class="detail-actions">
+                            <button class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button class="btn btn-outline"><i class="fas fa-heart"></i> Add to Wishlist</button>
+                        </div>
+                    </div>
+                `;
+
+          // Add event listeners to thumbnails
+          document.querySelectorAll(".thumbnail").forEach((thumb) => {
+            thumb.addEventListener("click", () => {
+              const index = thumb.getAttribute("data-index");
+              document.getElementById("main-image").src =
+                selectedProduct.images[index];
+
+              // Update active class
+              document
+                .querySelectorAll(".thumbnail")
+                .forEach((t) => t.classList.remove("active"));
+              thumb.classList.add("active");
+            });
+          });
+
+          // Quantity controls
+          const minusBtn = document.querySelector(".quantity-btn.minus");
+          const plusBtn = document.querySelector(".quantity-btn.plus");
+          const quantityInput = document.querySelector(".quantity-input");
+
+          minusBtn.addEventListener("click", () => {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+              quantityInput.value = value - 1;
+            }
+          });
+
+          plusBtn.addEventListener("click", () => {
+            let value = parseInt(quantityInput.value);
+            quantityInput.value = value + 1;
+          });
+        }
+      }
+
+      // Generate rating stars
+      function generateRatingStars(rating) {
+        let stars = "";
+        for (let i = 1; i <= 5; i++) {
+          if (i <= Math.floor(rating)) {
+            stars += '<i class="fas fa-star"></i>';
+          } else if (i - 0.5 <= rating) {
+            stars += '<i class="fas fa-star-half-alt"></i>';
+          } else {
+            stars += '<i class="far fa-star"></i>';
+          }
+        }
+        return stars;
+      }
+
+      // Back to shop button
+      backToShop.addEventListener("click", (e) => {
+        e.preventDefault();
+        shopContainer.style.display = "block";
+        productDetailContainer.style.display = "none";
+      });
+
+      // Show notification
+      function showNotification(message) {
+        // Remove existing notifications
+        const existingNotification = document.querySelector(".notification");
+        if (existingNotification) {
+          existingNotification.remove();
+        }
+
+        // Create notification element
+        const notification = document.createElement("div");
+        notification.className = "notification";
+        notification.textContent = message;
+
+        // Add to document
+        document.body.appendChild(notification);
+
+        // Remove after delay
+        setTimeout(() => {
+          notification.remove();
+        }, 3000);
+      }
+
+      // Notification styles (dynamically added)
+      const style = document.createElement("style");
+      style.textContent = `
+            .notification {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: var(--primary);
+                color: white;
+                padding: 15px 25px;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow-lg);
+                z-index: 10000;
+                animation: slideIn 0.3s, fadeOut 0.5s 2.5s;
+            }
+            
+            @keyframes slideIn {
+                from { transform: translateX(100%); }
+                to { transform: translateX(0); }
+            }
+            
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+            
+            .product-rating {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 15px;
+                color: var(--secondary);
+            }
+        `;
+      document.head.appendChild(style);
+
+      // Initial rendering
+      renderProducts();
+    </script>
+  </body>
+</html>
